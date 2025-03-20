@@ -20,6 +20,7 @@ Route::post('/login', [UserController::class, 'login']);
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::put('/update', [UserController::class, 'update']);
+    Route::delete('/delete', [UserController::class, 'destry']);
 });
 
 

@@ -21,7 +21,7 @@ class UserController extends Controller
         ]);
 
 
-        $role = DB::table('roles')->where('role', 'user')->first();
+        $role = DB::table('roles')->where('role', 'admin')->first();
 
         if (!$role) {
 
@@ -106,5 +106,20 @@ class UserController extends Controller
             'message' => 'Profile updated successfully!',
             'user' => $user
         ], 200);
+    }
+
+    public function destry(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->validate([
+            'password' => 'required|string|min:6'
+        ]);
+
+        if (!Hash::check($request->password, $user->password)) {
+            return response()->json(['error' => 'invalid password'], 401);
+        }
+        $user->delete();
+        return response()->json(['message' => 'user has been deleted'], 200);
     }
 }
