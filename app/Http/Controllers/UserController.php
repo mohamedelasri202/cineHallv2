@@ -107,11 +107,9 @@ class UserController extends Controller
             'user' => $user
         ], 200);
     }
-
-    public function destry(Request $request)
+    public function destroy(Request $request)
     {
         $user = Auth::user();
-
         $request->validate([
             'password' => 'required|string|min:6'
         ]);
@@ -120,6 +118,7 @@ class UserController extends Controller
             return response()->json(['error' => 'invalid password'], 401);
         }
         $user->delete();
-        return response()->json(['message' => 'user has been deleted'], 200);
+
+        return response()->json(['message' => 'you have successfully deleted your account'], 200);
     }
 }
