@@ -17,7 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
-Route::middleware('auth:sanctum')->put('/update', [UserController::class, 'update']);
+
+Route::group(['middleware' => ['auth:api']], function () {
+    Route::put('/update', [UserController::class, 'update']);
+});
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
