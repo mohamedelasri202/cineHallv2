@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FilmController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,9 @@ Route::post('/login', [UserController::class, 'login']);
 Route::group(['middleware' => ['auth:api']], function () {
     Route::put('/update', [UserController::class, 'update']);
     Route::delete('/delete', [UserController::class, 'destroy']);
+    Route::get('/films', [FilmController::class, 'index']);
+    Route::post('/filmstore', [FilmController::class, 'store']);
+    Route::put('/filmupdate/{id}', [FilmController::class, 'update']);
 });
 
 
