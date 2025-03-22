@@ -8,5 +8,5 @@ interface FilmRepositoryInterface
     public function CreateFilm($data);
     public function getFilm($id);
     public function updateFilm($id, $data);
-    public function deleteFuilm($id);
+    public function deleteFilm($id);
 }

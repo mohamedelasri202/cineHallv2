@@ -27,22 +27,34 @@ class FilmRepository implements FilmRepositoryInterface
     }
     public function updateFilm($id, $data)
     {
-        $film = Film::find($id); // Find the film by its ID
 
-        // If film not found, return false or null
+        $film = Film::find($id);
+
         if (!$film) {
-            return null; // Or return false
+            return null;
+        }
+        if (!$film) {
+            return response()->json(['error' => 'Film not found'], 404);
         }
 
-        // Update the film with the given data
+        if ($film->user_id !== auth()->id()) {
+            return response()->json([
+                'error' => 'You are not authorized to update this film because you did not create it.'
+            ], 403);
+        }
+
+
         $film->update($data);
 
-        return $film; // Return the updated film object
+        return response()->json([
+            'message' => 'Film updated successfully',
+            'film' => $film // Return the updated film object instead of request data
+        ]);
     }
 
 
-    public function deleteFuilm($id)
+    public function deleteFilm($id)
     {
-        return Film::find($id)->delete();
+        return Film::findOrFail($id)->delete();
     }
 }
