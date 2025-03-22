@@ -55,6 +55,25 @@ class FilmRepository implements FilmRepositoryInterface
 
     public function deleteFilm($id)
     {
-        return Film::findOrFail($id)->delete();
+        // Find the film
+        $film = Film::find($id);
+
+        // If film not found, return a 404 response
+        if (!$film) {
+            return response()->json(['error' => 'Film not found'], 404);
+        }
+
+        // Check if the authenticated user is the owner of the film
+        if ($film->user_id !== auth()->id()) {
+            return response()->json([
+                'error' => 'You are not authorized to delete this film because you did not create it.'
+            ], 403);
+        }
+
+        // Delete the film
+        $film->delete();
+
+        // Return success response
+        return response()->json(['message' => 'Film deleted successfully'], 200);
     }
 }
