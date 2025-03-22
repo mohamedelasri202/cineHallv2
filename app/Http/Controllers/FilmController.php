@@ -36,17 +36,14 @@ class FilmController extends Controller
 
     public function update(Request $request, $id)
     {
-        $film = $this->filmRepository->updateFilm($id, $request->all());
 
-        return response()->json([
-            'message' => 'Film updated successfully',
-            'film' => $film
-        ]);
+
+        return  $film = $this->filmRepository->updateFilm($id, $request->all());
     }
 
     public function destroy($id)
     {
-        $this->filmRepository->deleteFilm($id);
-        return response()->json(['message' => 'The film has been deleted successfully']);
+
+        return   $this->filmRepository->deleteFilm($id);
     }
 }
