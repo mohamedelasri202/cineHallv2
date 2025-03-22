@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('minimum_age');
             $table->string('trailer');
             $table->string('genre');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

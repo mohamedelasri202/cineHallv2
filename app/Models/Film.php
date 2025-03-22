@@ -17,7 +17,8 @@ class Film extends Model
         'duree',
         'minimum_age',
         'trailer',
-        'genre'
+        'genre',
+        'user_id'
 
 
     ];

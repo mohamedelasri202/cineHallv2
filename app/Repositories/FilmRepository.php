@@ -27,8 +27,19 @@ class FilmRepository implements FilmRepositoryInterface
     }
     public function updateFilm($id, $data)
     {
-        return Film::find($id)->update($data);
+        $film = Film::find($id); // Find the film by its ID
+
+        // If film not found, return false or null
+        if (!$film) {
+            return null; // Or return false
+        }
+
+        // Update the film with the given data
+        $film->update($data);
+
+        return $film; // Return the updated film object
     }
+
 
     public function deleteFuilm($id)
     {
