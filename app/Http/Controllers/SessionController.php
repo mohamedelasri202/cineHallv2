@@ -26,4 +26,8 @@ class SessionController extends Controller
 
         return  $session = $this->SessionRepository->updateSession($id, $request->all());
     }
+    public function destroy($id)
+    {
+        return $this->SessionRepository->deleteSession($id);
+    }
 }
