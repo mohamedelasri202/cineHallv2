@@ -9,4 +9,5 @@ interface SessionRepositoryInterface
     public function getSession($id);
     public function updateSession($id, $data);
     public function deleteSession($id);
+    public function filter($type);
 }

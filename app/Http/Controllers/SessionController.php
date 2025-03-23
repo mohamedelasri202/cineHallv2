@@ -30,4 +30,8 @@ class SessionController extends Controller
     {
         return $this->SessionRepository->deleteSession($id);
     }
+    public function filter($type)
+    {
+        return $this->SessionRepository->filter($type);
+    }
 }

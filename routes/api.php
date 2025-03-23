@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::Post('/sessionstore', [SessionController::class, 'store']);
     Route::put('/sessionupdat/{id}', [SessionController::class, 'update']);
     Route::delete('/deletesession/{id}', [SessionController::class, 'destroy']);
+    Route::get('/filter/{type}', [SessionController::class, 'filter']);
 });
 
 

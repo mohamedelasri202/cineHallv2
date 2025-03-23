@@ -53,4 +53,8 @@ class SessionRepository implements SessionRepositoryInterface
 
         return response()->json(['message', 'the session is deleted successfully']);
     }
+    public function filter($type)
+    {
+        return Session::where('session_type', $type)->get();
+    }
 }
