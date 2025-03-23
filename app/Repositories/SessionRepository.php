@@ -21,20 +21,17 @@ class SessionRepository implements SessionRepositoryInterface
     }
     public function updateSession($id, $data)
     {
-        // Find the session
         $session = Session::find($id);
 
-        // If session not found, return a 404 response
         if (!$session) {
             return response()->json(['error' => 'Session not found'], 404);
         }
 
-        // Check if $data is null or empty before updating
+
         if (empty($data)) {
             return response()->json(['error' => 'No data provided to update'], 400);
         }
 
-        // Update the session
         $session->update($data);
 
         // Return success response

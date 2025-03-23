@@ -23,6 +23,7 @@ class SessionController extends Controller
 
     public function update(Request $request, $id)
     {
-        return $this->SessionRepository->updateSession($id, $request->all);
+
+        return  $session = $this->SessionRepository->updateSession($id, $request->all());
     }
 }

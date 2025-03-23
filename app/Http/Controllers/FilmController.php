@@ -28,13 +28,12 @@ class FilmController extends Controller
 
     public function store(filmStoreRequest $request)
     {
-        // Get validated request data
+
         $filmData = $request->validated();
 
-        // Attach the authenticated user's ID
         $filmData['user_id'] = Auth::id();
 
-        // Create the film using the repository
+
         $film = $this->filmRepository->CreateFilm($filmData);
 
         return response()->json([
