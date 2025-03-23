@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Film;
 use Illuminate\Http\Request;
+use app\Repositories\FilmRepository;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\FilmStoreRequest;
+
+
+use App\Http\Requests\filmStoreRequest;
 use App\Repositories\FilmRepositoryInterface;
 
 class FilmController extends Controller
 {
+
     protected $filmRepository;
 
     public function __construct(FilmRepositoryInterface $filmRepository)
@@ -19,31 +22,33 @@ class FilmController extends Controller
 
     public function index()
     {
-        return response()->json($this->filmRepository->getAllFilms());
+        return response()->json($this->filmRepository->getallfilms());
     }
 
-    public function store(FilmStoreRequest $request)
+
+    public function store(filmStoreRequest $request)
     {
+        // Get validated request data
         $filmData = $request->validated();
+
+        // Attach the authenticated user's ID
         $filmData['user_id'] = Auth::id();
-        $film = $this->filmRepository->createFilm($filmData);
+
+        // Create the film using the repository
+        $film = $this->filmRepository->CreateFilm($filmData);
 
         return response()->json([
             'message' => 'Film created successfully',
             'film' => $film
         ], 201);
     }
-
     public function update(Request $request, $id)
     {
-
-
-        return  $film = $this->filmRepository->updateFilm($id, $request->all());
+        return    $film = $this->filmRepository->updateFilm($id, $request->all());
     }
-
     public function destroy($id)
     {
 
-        return   $this->filmRepository->deleteFilm($id);
+        return $this->filmRepository->deleteFilm($id);
     }
 }
