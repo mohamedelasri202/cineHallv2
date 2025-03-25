@@ -13,4 +13,10 @@ class RoomRepository implements RoomRepositoryInterface
         $room = Room::create($data);
         return $room;
     }
+    public function updateroom($id, $data)
+    {
+        $room = Room::find($id);
+        $room->update($data);
+        return $room;
+    }
 }
