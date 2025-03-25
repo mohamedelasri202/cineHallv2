@@ -10,6 +10,7 @@ class RoomRepository implements RoomRepositoryInterface
 {
     public function creatRoom($data)
     {
-        return Room::create($data);
+        $room = Room::create($data);
+        return $room;
     }
 }

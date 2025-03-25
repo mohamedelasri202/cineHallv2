@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\RoomRepository;
 use App\Models\Room;
-use App\Repositories\RoomRepositories;
 use Illuminate\Http\Request;
+use App\Repositories\RoomRepository;
+use App\Repositories\RoomRepositories;
+use App\Http\Requests\RoomStoreRequest;
+
 
 
 class RoomController extends Controller
@@ -16,8 +18,10 @@ class RoomController extends Controller
         $this->roomRepository = $roomRepository;
     }
 
-    public function store(Request $request)
+    public function store(RoomStoreRequest $request)
     {
-        $request = $this->roomRepository->creatRoom($request->all());
+        $data =  $request->validated();
+        $room = $this->roomRepository->creatRoom($data);
+        return response()->json(['message' => 'room has been created suuccessfully', 'room' => $room]);
     }
 }

@@ -11,7 +11,7 @@ class RoomStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,9 +22,9 @@ class RoomStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required/string',
-            'capacity' => 'required/integer',
-            'type' => 'required/string',
+            'name' => 'required|string',
+            'capacity' => 'required|integer',
+            'type' => 'required|string',
         ];
     }
 }
