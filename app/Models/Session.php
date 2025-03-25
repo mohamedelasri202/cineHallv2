@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Session extends Model
 {
     use HasFactory;
-    protected $table = 'session';
+
     protected $fillable = [
         'film_id',
-        'room',
+        'room_id',
         'start_time',
         'session_type',
-        'languge',
+        'language',
 
     ];
 }

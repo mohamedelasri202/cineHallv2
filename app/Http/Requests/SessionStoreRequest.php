@@ -23,10 +23,10 @@ class SessionStoreRequest extends FormRequest
     {
         return [
             'film_id' => 'required|integer|min:1',
-            'room' => 'required|string|max:255',
+            'room_id' => 'required|integer|min:1',
             'start_time' => 'required|date',
             'session_type' => 'required|string|max:255',
-            'languge' => 'required|string|max:255',
+            'language' => 'required|string|max:255',
 
         ];
     }
