@@ -26,4 +26,8 @@ class ReservationController extends Controller
     {
         return $this->reservationRepository->getallreservations();
     }
+    public function cancellreservation($id)
+    {
+        return $this->reservationRepository->cancellreservation($id);
+    }
 }

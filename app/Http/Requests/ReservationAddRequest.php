@@ -25,7 +25,7 @@ class ReservationAddRequest extends FormRequest
 
             'session_id' => 'required|integer|min:1',
             'seat_id' => 'required|array|min:1',
-            'number_of_seats' => 'required|integer|min:1',
+
             'user_id' => 'required|integer|min:1',
             'seat_type' => 'required|string|in:solo,couple'
         ];

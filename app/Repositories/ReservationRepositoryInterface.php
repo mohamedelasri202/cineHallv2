@@ -9,5 +9,5 @@ interface ReservationRepositoryInterface
     public function getallreservations();
     public function getreservation($id);
     public function updatereservation($id, $data);
-    public function deletereservation($id);
+    public function cancellreservation($id);
 }

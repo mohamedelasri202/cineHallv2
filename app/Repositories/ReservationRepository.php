@@ -78,31 +78,37 @@ class ReservationRepository implements ReservationRepositoryInterface
 
 
 
+    public function cancellreservation($id)
+    {
+
+        $reservation = Reservation::find($id);
+
+
+        if (!$reservation) {
+            return response()->json(['message' => 'Reservation not found'], 404);
+        }
+
+
+        if ($reservation->status !== 'pending') {
+            return response()->json(['message' => 'Reservation cannot be cancelled. It is not in pending status.'], 400);
+        }
+
+
+        $reservation->status = 'cancelled';
+        $reservation->save();
+
+        return response()->json(['message' => 'Your reservation has been cancelled. Thank you for your time.'], 200);
+    }
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public function updatereservation($id, $data)
+    {
+        $reservation = Reservation::find($id);
+        $reservation->update($data);
+        return $reservation;
+    }
     public function getallreservations()
     {
         $reservations = Reservation::all();
@@ -111,18 +117,6 @@ class ReservationRepository implements ReservationRepositoryInterface
     public function getreservation($id)
     {
         $reservation = Reservation::find($id);
-        return $reservation;
-    }
-    public function updatereservation($id, $data)
-    {
-        $reservation = Reservation::find($id);
-        $reservation->update($data);
-        return $reservation;
-    }
-    public function deletereservation($id)
-    {
-        $reservation = Reservation::find($id);
-        $reservation->delete();
         return $reservation;
     }
 }
