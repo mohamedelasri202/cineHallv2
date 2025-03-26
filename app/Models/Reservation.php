@@ -11,8 +11,18 @@ class Reservation extends Model
     protected $fillable = [
         'session_id',
         'user_id',
-
+        'price',
         'seat_id',
-        'seat_type'
+        'seat_type',
+        'expires_at',
+        'payment_id',
+        'payment_status',
+        'status',
+    ];
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'expires_at'
     ];
 }
+

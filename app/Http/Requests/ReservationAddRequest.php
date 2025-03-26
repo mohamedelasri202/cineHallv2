@@ -27,7 +27,9 @@ class ReservationAddRequest extends FormRequest
             'seat_id' => 'required|array|min:1',
 
             'user_id' => 'required|integer|min:1',
-            'seat_type' => 'required|string|in:solo,couple'
+            'seat_type' => 'required|string|in:solo,couple',
+            'price' => 'numeric|min:1'
+
         ];
     }
 }

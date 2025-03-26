@@ -8,6 +8,7 @@ use App\Http\Controllers\SeatController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,9 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/getallresrvations', [ReservationController::class, 'getallresrvations']);
     Route::put('/cancellreservation/{id}', [ReservationController::class, 'cancellreservation']);
     Route::put('/updatereservation/{id}', [ReservationController::class, 'updatereservation']);
+    Route::post('/payments/create', [PaymentController::class, 'createPayment']);
+    Route::post('/payments/capture', [PaymentController::class, 'capturePayment'])->name('api.payments.success');
+    Route::post('/payments/cancel', [PaymentController::class, 'cancelPayment'])->name('api.payments.cancel');
 });
 
 

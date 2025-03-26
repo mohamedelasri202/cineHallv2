@@ -25,8 +25,8 @@ class ReservationUpdateRequest extends FormRequest
             'session_id' => 'integer|exists:sessions,id',
             'seat_id' => 'integer|exists:seats,id',
             'user_id' => 'integer|exists:users,id',
-            'number_of_seat' => 'integer|min:1|max:10', // Ensures at least 1 seat is booked
-            'seat_type' => 'string', // Change types as needed
+            'number_of_seat' => 'integer|min:1|max:10',
+            'seat_type' => 'string',
         ];
     }
 }

@@ -13,6 +13,8 @@ use App\Repositories\RoomRepositoryInterface;
 use App\Repositories\SeatRepositoryInterface;
 use App\Repositories\SessionRepositoryInterface;
 use App\Repositories\ReservationRepositoryInterface;
+use App\Repositories\PaymentRepositoryInterface;
+use App\Repositories\PaymentRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(RoomRepositoryInterface::class, RoomRepository::class);
         $this->app->bind(SeatRepositoryInterface::class, SeatRepository::class);
         $this->app->bind(ReservationRepositoryInterface::class, ReservationRepository::class);
+        $this->app->bind(PaymentRepositoryInterface::class, PaymentRepository::class);
     }
     /**
      * Bootstrap any application services.
