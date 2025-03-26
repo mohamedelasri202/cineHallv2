@@ -111,7 +111,10 @@ class ReservationRepository implements ReservationRepositoryInterface
     }
     public function getallreservations()
     {
-        $reservations = Reservation::all();
+        $reservations = Reservation::where('status', 'confirmed')->get();
+        if($reservations->isEmpty()) {
+            return response()->json(['message'=>'there are no reservations yet.'], 200);
+        }
         return $reservations;
     }
     public function getreservation($id)
