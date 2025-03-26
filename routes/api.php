@@ -7,6 +7,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SeatController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::post('/seatstore', [SeatController::class, 'store']);
     Route::put('/updateseat/{id}', [SeatController::class, 'update']);
     Route::delete('/deleteseat/{id}', [SeatController::class, 'destroy']);
+    Route::post('/addreservation', [ReservationController::class, 'store']);
 });
 
 

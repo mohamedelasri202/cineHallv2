@@ -11,7 +11,7 @@ class ReservationAddRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class ReservationAddRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'session_id' => 'required|integer|min:1',
+            'seat_id' => 'required|integer|min:1',
+            'number_of_seats' => 'required|integer|min:1',
+            'user_id' => 'required|integer|min:1',
+
         ];
     }
 }
