@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('reservations', function (Blueprint $table) {
-            $table->dropColumn('room_id');
+            $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending');
         });
     }
 
@@ -21,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('reservations', function (Blueprint $table) {});
+        Schema::table('reservations', function (Blueprint $table) {
+            //
+        });
     }
 };

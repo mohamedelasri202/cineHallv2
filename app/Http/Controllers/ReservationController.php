@@ -18,6 +18,8 @@ class ReservationController extends Controller
 
     public function store(ReservationAddRequest $request)
     {
+
+
         $data = $request->validated();
         $reservation = $this->reservationRepository->addreservation($data);
         return response()->json(['message' => 'reservation has been created successfully', 'reservation' => $reservation]);
