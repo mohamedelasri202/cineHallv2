@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\ReservationRepository;
 use App\Http\Requests\ReservationAddRequest;
+use App\Http\Requests\ReservationUpdateRequest;
 use App\Repositories\ReservationRepositoryInterface;
 
 class ReservationController extends Controller
@@ -30,4 +31,9 @@ class ReservationController extends Controller
     {
         return $this->reservationRepository->cancellreservation($id);
     }
+    public function updatereservation(ReservationUpdateRequest $request, $id){
+    $data = $request->validated();
+    $reservation = $this->reservationRepository->updatereservation($id, $data);
+}
+
 }
