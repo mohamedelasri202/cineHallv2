@@ -10,9 +10,6 @@ class ReservationRepository implements ReservationRepositoryInterface
     public function addreservation($data)
     {
         $user_id = auth()->user()->id;
-        if ($user_id != $request->user_id) {
-            return response()->json(['error' => 'the user_id is false please chose another one'], 403);
-        }
         $data['user_id'] = $user_id;
         $reservation = Reservation::create($data);
         return $reservation;
