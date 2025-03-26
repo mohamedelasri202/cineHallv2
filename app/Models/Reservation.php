@@ -12,6 +12,7 @@ class Reservation extends Model
         'session_id',
         'user_id',
         'number_of_seats',
-        'seats_id'
+        'seat_id',
+        'seat_type'
     ];
 }

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('reservations', function (Blueprint $table) {
-            $table->enum('status', ['pending', 'confirmed', 'cancelled'])->default('pending');
+            $table->foreignId('seat_id')->constrained('seats')->onDelete('cascade');
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('reservations', function (Blueprint $table) {
-            //
+            $table->dropColumn('seat_id');
         });
     }
 };
