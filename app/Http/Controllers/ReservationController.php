@@ -22,4 +22,8 @@ class ReservationController extends Controller
         $reservation = $this->reservationRepository->addreservation($data);
         return response()->json(['reservation' => $reservation]);
     }
+    public function getallresrvations()
+    {
+        return $this->reservationRepository->getallreservations();
+    }
 }

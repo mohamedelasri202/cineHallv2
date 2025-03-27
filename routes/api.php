@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::put('/updateseat/{id}', [SeatController::class, 'update']);
     Route::delete('/deleteseat/{id}', [SeatController::class, 'destroy']);
     Route::post('/addreservation', [ReservationController::class, 'store']);
+    Route::get('/getallresrvations', [ReservationController::class, 'getallresrvations']);
 });
 
 
