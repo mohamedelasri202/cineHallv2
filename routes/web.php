@@ -22,3 +22,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/login', [UserController::class, 'showloginform']);
+Route::get('/register', function () {
+    return view('auth.register');
+});
+Route::get('/home', function () {
+    return view('home.home');
+});
+Route::get('/userprofile', function () {
+    return view('home.user_profile');
+});

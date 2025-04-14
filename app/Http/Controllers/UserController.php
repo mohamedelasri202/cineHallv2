@@ -21,7 +21,7 @@ class UserController extends Controller
         ]);
 
 
-        $role = DB::table('roles')->where('role', 'admin')->first();
+        $role = DB::table('roles')->where('role', 'user')->first();
 
         if (!$role) {
 
@@ -38,45 +38,40 @@ class UserController extends Controller
 
         return response()->json(['message' => 'User registered successfully', 'user' => $user], 201);
     }
+
+
     public function login(Request $request)
     {
+        // Validate the incoming request data
         $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string|min:6'
         ]);
 
-
+        // Attempt to find the user by email
         $user = User::where('email', $request->email)->first();
 
-
+        // Check if user exists and the password is correct
         if (!$user || !Hash::check($request->password, $user->password)) {
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
 
-
+        // Generate JWT token for the user
         $token = JWTAuth::attempt(['email' => $request->email, 'password' => $request->password]);
 
+        // Check if token was created successfully
         if (!$token) {
             return response()->json(['error' => 'Could not create token'], 500);
         }
 
+        // Return the token and user information
         return response()->json([
             'message' => 'Login successful',
             'token' => $token,
             'user' => $user
         ]);
-
-        if (Auth::check()) {
-
-            $user = Auth::user();
-
-            if ($user->role->name == 'admin') {
-                return redirect()->route('admin.dashboard');
-            } else {
-                return redirect()->route('user.dashboard');
-            }
-        }
     }
+
     public function update(Request $request)
     {
         $user = Auth::user();
@@ -124,5 +119,9 @@ class UserController extends Controller
     public function showloginform()
     {
         return view('auth.login');
+    }
+    public function showregisterform()
+    {
+        return view('auth.register');
     }
 }
