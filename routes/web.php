@@ -21,7 +21,7 @@ Route::get('/insertroles', [RoleController::class, 'insertroles']);
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/login', [UserController::class, 'showloginform']);
+
 Route::get('/register', function () {
     return view('auth.register');
 });
@@ -30,4 +30,7 @@ Route::get('/home', function () {
 });
 Route::get('/userprofile', function () {
     return view('home.user_profile');
+});
+Route::get('/login', function () {
+    return view('login');
 });
