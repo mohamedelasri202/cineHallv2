@@ -121,4 +121,8 @@ class UserController extends Controller
 
         return response()->json(['message' => 'you have successfully deleted your account'], 200);
     }
+    public function showloginform()
+    {
+        return view('auth.login');
+    }
 }

@@ -21,8 +21,8 @@ use App\Http\Controllers\PaymentController;
 |
 */
 
-Route::post('/register', [UserController::class, 'register']);
-Route::post('/login', [UserController::class, 'login']);
+Route::post('/register', [UserController::class, 'register'])->name('register');
+Route::post('/login', [UserController::class, 'login'])->name('login');
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::put('/update', [UserController::class, 'update']);
